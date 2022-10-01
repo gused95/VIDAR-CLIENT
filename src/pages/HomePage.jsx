@@ -15,6 +15,10 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { palette } from '@mui/system';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import PlusOneIcon from '@mui/icons-material/PlusOne';
+
 
 const theme = createTheme();
 
@@ -30,13 +34,12 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function HomePage() {
   return (
-    <div className="App">
-      <div>
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: '100vh' }}>
+        
+        <Grid container direction="row-reverse" component="main" sx={{ height: '100vh' }}>
           <CssBaseline />
-          <Grid
-            item
+          {/* img */}
+          <Grid item
             xs={false}
             sm={4}
             md={6}
@@ -49,59 +52,57 @@ function HomePage() {
               backgroundPosition: 'center',
             }}
           />
-          <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
-            <Box
-              sx={{
-                my: 8,
-                mx: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              
-              <Typography component="h1" variant="h5">
-                Bienvenido a VIDAR
-              </Typography>
-              {/* starts form */}
-              <Box component="form" noValidate sx={{ mt: 1 }}>
-                {/* <TextField
-                  label="input-username"
+          {/* img */}
+          
+          {/* text */}
+          <Grid item  xs={12} sm={8} md={6} component={Paper} elevation={6} >
+            
+            <Grid item container direction="column" justifyContent="space-evenly" sx={{ height: '100vh' }}>
+              <Grid item>
+                <Typography variant="h4" gutterBottom>
+                  Bienvenido a VIDAR
+                </Typography>
+              </Grid>
 
-                  
+              <Grid item>
+                  <Typography variant="h5" gutterBottom>
+                    Vende | Intercambia | Dona
+                  </Typography>                  
+                  <Typography variant="h5" gutterBottom>
+                    Tus Chácharas  
+                  </Typography>                  
+                  <Typography variant="h5" >
+                    y Ayuda Reciclando en Comunidad                
+                  </Typography>
+              </Grid>
 
-                  margin="normal"                  
-                  fullWidth                                                 
-                  autoFocus                                 
-                />
-                <TextField
-                  margin="normal"
-                  label="input-password"
-                  
-                  
-                  
-                  fullWidth                                                                     
-                /> */}
+              <Grid item>
+                <Typography variant="h6" >
+                  Conectamos a vecinos para vender,
+                </Typography>                  
+                <Typography variant="h6" >
+                  comprar, intercambiar o donar
+                </Typography>                  
+                <Typography variant="h6" >
+                  chácharas
+                </Typography>
+              </Grid>
 
-                
-
-
-                {/* <Grid container>
-
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      {"No tienes una cuenta? Regístrate"}
-                    </Link>
-                  </Grid>
-                </Grid> */}
-              </Box>
-              {/* ends form */}
-            </Box>
+              <Grid item>
+                <Typography variant="h6">
+                  <PlusOneIcon color="success"/>
+                  Dale otra vida a las cosas que ya no usas
+                </Typography>
+                <Typography variant="h6">
+                  <VolunteerActivismIcon sx={{ color: 'purple' }} />
+                  Cambia la vida de alguien donándolas
+                </Typography>
+              </Grid>
+            </Grid>
           </Grid>
+
         </Grid>
       </ThemeProvider>
-      </div>
-    </div>
   );
 }
 

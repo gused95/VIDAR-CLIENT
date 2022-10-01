@@ -61,7 +61,7 @@ export default function Signup({ authenticate }) {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: '100vh' }}>
+        <Grid container direction="row-reverse" component="main" sx={{ height: '100vh' }}>
           <CssBaseline />
           <Grid
             item
@@ -134,6 +134,7 @@ export default function Signup({ authenticate }) {
                   type="submit"
                   fullWidth
                   variant="contained"
+                  color="success"
                   sx={{ mt: 3, mb: 2 }}
                 >
                   Únete

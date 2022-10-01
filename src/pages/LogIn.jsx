@@ -17,6 +17,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 
 const theme = createTheme();
 
@@ -55,7 +56,7 @@ export default function LogIn({ authenticate }) {
 
   return (
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: '100vh' }}>
+        <Grid container direction="row-reverse" component="main" sx={{ height: '100vh' }}>
           <CssBaseline />
           <Grid
             item
@@ -81,8 +82,7 @@ export default function LogIn({ authenticate }) {
                 alignItems: 'center',
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              </Avatar>
+              <InsertEmoticonIcon color="primary" sx={{ fontSize: 55, m: 1 }}/>
               <Typography component="h1" variant="h5">
                 Bienvenido a VIDAR
               </Typography>
@@ -128,6 +128,7 @@ export default function LogIn({ authenticate }) {
                   type="submit"
                   fullWidth
                   variant="contained"
+                  color="success"
                   sx={{ mt: 3, mb: 2 }}
                 >
                   Iniciar sesión
