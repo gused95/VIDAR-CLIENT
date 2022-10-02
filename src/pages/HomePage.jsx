@@ -57,7 +57,11 @@ function HomePage() {
           {/* text */}
           <Grid item  xs={12} sm={8} md={6} component={Paper} elevation={6} >
             
-            <Grid item container direction="column" justifyContent="space-evenly" sx={{ height: '100vh' }}>
+            <Grid item container direction="column" 
+              justifyContent="space-evenly"  
+              alignItems="center"
+              sx={{ height: '100vh', textAlign: 'center' }}
+            >
               <Grid item>
                 <Typography variant="h4" gutterBottom>
                   Bienvenido a VIDAR

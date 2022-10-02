@@ -10,6 +10,10 @@ import LogIn from "./pages/LogIn";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 
+import { ThemeProvider } from '@mui/material/styles';
+import theme  from './myTheme'
+import Navbar2 from "./components/Navbar2/Navbar2";
+
 export default function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -54,8 +58,8 @@ export default function App() {
     return <LoadingComponent />;
   }
   return (
-    <div className="App">
-      <Navbar handleLogout={handleLogout} user={user} />
+    <div>
+      <Navbar2 handleLogout={handleLogout} user={user}/>
       <Routes>
         {/* {routes({ user, authenticate, handleLogout }).map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />

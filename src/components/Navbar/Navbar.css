@@ -8,14 +8,12 @@ nav {
 }
 
 .nav__projectName {
-  color: #e4f9ff;
   text-decoration: none;
 }
 
 .authLink {
-  color: #61dafb;
   text-decoration: none;
-  transition: color 0.2s ease-in-out;
+  /* transition: color 0.2s ease-in-out; */
 }
 
 .authLink + .authLink {
@@ -23,10 +21,10 @@ nav {
 }
 
 .authLink:hover {
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 
-.nav-logoutbtn {
+/* .nav-logoutbtn {
   font-family: inherit;
   font-weight: inherit;
   padding: 0.5em 1em;
@@ -40,7 +38,7 @@ nav {
   transition: all 0.2s ease-in-out;
   position: sticky;
   top: 0;
-}
+} */
 
 .nav-logoutbtn:hover {
   transform: scale(1.05);

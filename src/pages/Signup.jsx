@@ -27,8 +27,10 @@ export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
     email: "",
     password: "",
+    name: "",
+    lastName: "",
   });
-  const { email, password } = form;
+  const { email, password, name, lastName } = form;
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -42,6 +44,8 @@ export default function Signup({ authenticate }) {
     const credentials = {
       email,
       password,
+      name,
+      lastName,
     };
     signup(credentials).then((res) => {
       if (!res.status) {
@@ -95,6 +99,35 @@ export default function Signup({ authenticate }) {
               {/* starts form */}
               <Box component="form" noValidate onSubmit={handleFormSubmission} sx={{ mt: 1 }}>
                 <TextField
+                  margin="normal"
+                  label="Name"
+
+                  id="name"
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={handleInputChange}
+                  required
+                  
+                  fullWidth                                                 
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  label="Last Name"
+
+                  id="lastName"
+                  type="text"
+                  name="lastName"
+                  value={lastName}
+                  onChange={handleInputChange}
+                  required
+                  
+                  fullWidth                                                 
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
                   label="Email"
 
                   id="email"
@@ -103,10 +136,9 @@ export default function Signup({ authenticate }) {
                   value={email}
                   onChange={handleInputChange}
                   required
-
-                  margin="normal"                  
+                  
                   fullWidth                                                 
-                  autoFocus                                 
+                  autoFocus
                 />
                 <TextField
                   margin="normal"
@@ -120,7 +152,8 @@ export default function Signup({ authenticate }) {
                   required
                   minLength="8"
                   
-                  fullWidth                                                                     
+                  fullWidth
+                  autoFocus                                                                     
                 />
 
                 {error && (
