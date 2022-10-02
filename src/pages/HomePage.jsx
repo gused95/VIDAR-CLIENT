@@ -36,7 +36,7 @@ function HomePage() {
   return (
       <ThemeProvider theme={theme}>
         
-        <Grid container direction="row-reverse" component="main" sx={{ height: '100vh' }}>
+        <Grid container direction="row-reverse" component="main" sx={{ height: '90vh' }}>
           <CssBaseline />
           {/* img */}
           <Grid item
@@ -62,11 +62,6 @@ function HomePage() {
               alignItems="center"
               sx={{ height: '100vh', textAlign: 'center' }}
             >
-              <Grid item>
-                <Typography variant="h4" gutterBottom>
-                  Bienvenido a VIDAR
-                </Typography>
-              </Grid>
 
               <Grid item>
                   <Typography variant="h5" gutterBottom>
@@ -92,19 +87,32 @@ function HomePage() {
                 </Typography>
               </Grid>
 
-              <Grid item>
-                <Typography variant="h6">
-                  <PlusOneIcon color="success"/>
-                  Dale otra vida a las cosas que ya no usas
-                </Typography>
-                <Typography variant="h6">
-                  <VolunteerActivismIcon sx={{ color: 'purple' }} />
-                  Cambia la vida de alguien donándolas
-                </Typography>
+              <Grid item container spacing={1}>
+                <Grid item xs={12}
+                  sx={{display:'flex', 
+                        justifyContent:'center', 
+                        alignItems:'center', 
+                        }}>
+                  <PlusOneIcon color="success" sx={{ fontSize: 35, mr: 2 }}/>
+                  <Typography variant="h6">
+                    Dale otra vida a las cosas que ya no usas
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={12}
+                  sx={{display:'flex', 
+                        justifyContent:'center', 
+                        alignItems:'center', 
+                        }}>
+                  <VolunteerActivismIcon sx={{ color: 'purple', fontSize: 35, mr: 2 }} />
+                  <Typography variant="h6">
+                    Cambia la vida de alguien donándolas
+                  </Typography>
+                </Grid>
+                
               </Grid>
             </Grid>
           </Grid>
-
         </Grid>
       </ThemeProvider>
   );

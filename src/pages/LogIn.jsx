@@ -6,27 +6,40 @@ import * as PATHS from "../utils/paths";
 import * as USER_HELPERS from "../utils/userToken";
 
 // ---------- template signup mui--------------------
-import Avatar from '@mui/material/Avatar';
+
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-
-const theme = createTheme();
+import theme from "../myTheme";
 
 // ---------- template signup mui--------------------
+
+// ----------  input adornment   --------------------
+
+import IconButton from '@mui/material/IconButton';
+import FilledInput from '@mui/material/FilledInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+
+
+// ----------  input adornment   --------------------
 
 export default function LogIn({ authenticate }) {
   const [form, setForm] = useState({
     email: "",
     password: "",
+    lastName: "",
+    showPassword: false,
   });
   const { email, password } = form;
   const [error, setError] = useState(null);
@@ -34,7 +47,6 @@ export default function LogIn({ authenticate }) {
 
   function handleInputChange(event) {
     const { name, value } = event.target;
-
     return setForm({ ...form, [name]: value });
   }
 
@@ -53,6 +65,19 @@ export default function LogIn({ authenticate }) {
       navigate(PATHS.HOMEPAGE);
     });
   }
+
+    // For Input Adornmet in password
+    const handleClickShowPassword = () => {
+      setForm({
+        ...form,
+        showPassword: !form.showPassword,
+      });
+    };
+  
+    const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+    };
+    // For Input Adornmet in password
 
   return (
       <ThemeProvider theme={theme}>
@@ -82,53 +107,78 @@ export default function LogIn({ authenticate }) {
                 alignItems: 'center',
               }}
             >
-              <InsertEmoticonIcon color="primary" sx={{ fontSize: 55, m: 1 }}/>
+              <InsertEmoticonIcon color="secondary" sx={{ fontSize: 55, m: 1 }}/>
               <Typography component="h1" variant="h5">
                 Bienvenido a VIDAR
               </Typography>
               {/* starts form */}
               <Box component="form" noValidate onSubmit={handleFormSubmission} sx={{ mt: 1 }}>
-                <TextField
-                  label="Email"
+                <Grid container spacing={1}>
+                  <Grid item xs={12}>
+                      <TextField
+                      label="Email"
 
-                  id="email"
-                  type="text"
-                  name="email"
-                  value={email}
-                  onChange={handleInputChange}
-                  required
+                      id="email"
+                      type="text"
+                      name="email"
+                      value={email}
+                      onChange={handleInputChange}
+                      required
 
-                  margin="normal"                  
-                  fullWidth                                                 
-                  autoFocus                                 
-                />
-                <TextField
-                  margin="normal"
-                  label="Contraseña"
-                  
-                  id="password"
-                  type="password"
-                  name="password"
-                  value={password}
-                  onChange={handleInputChange}
-                  required
-                  minLength="8"
-                  
-                  fullWidth                                                                     
-                />
+                      margin="normal"                  
+                      fullWidth                                                 
+                      autoFocus
+                      variant="filled"
+                      color="secondary"
+                      />
+                  </Grid>
 
+                  <Grid item xs={12}>
+                    <FormControl sx={{ mt: 1, display: 'block' }} variant="filled" color="secondary">
+                        <InputLabel htmlFor="filled-adornment-password">Contraseña</InputLabel>
+                          <FilledInput
+                            id="filled-adornment-password"
+                            type={form.showPassword ? 'text' : 'password'}
+                            name="password"
+                            value={form.password}
+                            onChange={handleInputChange}
+                            endAdornment={
+                              <InputAdornment position="end">
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={handleClickShowPassword}
+                                  onMouseDown={handleMouseDownPassword}
+                                  edge="end"
+                                >
+                                  {form.showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                              </InputAdornment>
+                            }
+                            label="Contraseña"
+                            required
+                            minLength="8"
+                            
+                            fullWidth
+                          />
+                      </FormControl>
+                  </Grid>
+
+                </Grid>
+                
                 {error && (
-                  <div className="error-block">
-                    <p>There was an error submiting the form:</p>
-                    <p>{error.message}</p>
-                  </div>
+                  <Box component='div' sx={{textAlign: 'center'}}>
+                    <Typography variant="body1" color="initial">
+                      <p>There was an error submiting the form:</p>
+                      <p>{error.message}</p>
+                    </Typography>
+                  </Box>
                 )}
                 
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
-                  color="success"
+                  color="secondary"
                   sx={{ mt: 3, mb: 2 }}
                 >
                   Iniciar sesión
@@ -137,9 +187,11 @@ export default function LogIn({ authenticate }) {
                 <Grid container>
 
                   <Grid item xs>
-                    <Link to={"/auth/signup"}>
-                      {"No tienes una cuenta? Regístrate"}
-                    </Link>
+                    <Box component='div' sx={{textAlign: 'center'}}>
+                      <Link to={"/auth/signup"}>
+                        {"No tienes una cuenta? Regístrate"}
+                      </Link>
+                    </Box>
                   </Grid>
                 </Grid>
               </Box>
