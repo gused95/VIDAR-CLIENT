@@ -14,6 +14,11 @@ import Grid from '@mui/material/Grid'
 import { ThemeProvider } from '@emotion/react';
 import theme from '../../myTheme';
 
+
+const linkStyle = {
+    textDecoration: 'none'
+}
+
 const Navbar2 = (props) => {
   return (
     <ThemeProvider theme={theme}>
@@ -30,7 +35,7 @@ const Navbar2 = (props) => {
                 <MenuIcon />
             </IconButton>
             <Box >
-                <Link to={PATHS.HOMEPAGE} className="nav__projectName">
+                <Link to={PATHS.HOMEPAGE} style={linkStyle}>
                     <Typography variant="h6" component="div">
                     {CONSTS.CAPITALIZED_APP.toUpperCase()}
                     <img src="../hoja.png" width="20vw"/>
@@ -46,7 +51,7 @@ const Navbar2 = (props) => {
                     <>
                         <Grid container spacing={1} alignItems='center'>
                             <Grid item>
-                                <Link to={PATHS.PROTECTEDPAGE} className="authLink">
+                                <Link to={PATHS.PROTECTEDPAGE}>
                                 Protected Page
                                 </Link>  
                             </Grid>
@@ -56,21 +61,29 @@ const Navbar2 = (props) => {
                                 </Button>  
                             </Grid>
                             <Grid item>
-                                <Button color="secondary" variant='contained'  onClick={props.handleLogout}>
-                                Logout
-                                </Button>    
+                                <Link to={"/"} style={linkStyle}>
+                                    <Button color="secondary" variant='contained'  onClick={props.handleLogout}>
+                                        Logout
+                                    </Button>    
+                                </Link>
                             </Grid>
                         </Grid>
                         
                     </>
                     ) : (
                     <>
-                        <Link to={"/auth/signup"} className="authLink">
-                        <Button color="secondary" variant='contained'>Registrate</Button>
-                        </Link>
-                        <Link to={"/auth/login"} className="authLink">
-                        <Button color="secondary" variant='contained'>Iniciar Sesión</Button>
-                        </Link>
+                        <Grid container spacing={1}>
+                          <Grid item>
+                            <Link to={"/auth/signup"} style={linkStyle}>
+                                <Button color="secondary" variant='contained'>Registrate</Button>
+                            </Link>
+                          </Grid>
+                          <Grid item>
+                            <Link to={"/auth/login"} style={linkStyle}>
+                                <Button color="secondary" variant='contained'>Iniciar Sesión</Button>
+                            </Link>
+                          </Grid>
+                        </Grid>
                     </>
                     )}
             </Box>

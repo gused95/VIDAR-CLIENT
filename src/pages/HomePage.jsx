@@ -1,28 +1,17 @@
-import logo from "../logo.svg";
 import "../App.css";
-import { Button, Card } from "@mui/material";
-import CardComp from "../components/CardComp/CardComp";
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 // ---------- template signup mui--------------------
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { palette } from '@mui/system';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import PlusOneIcon from '@mui/icons-material/PlusOne';
 
 
 const theme = createTheme();
-
-// ---------- template signup mui--------------------
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -32,11 +21,15 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+// ---------- template signup mui--------------------
+
+
+
 function HomePage() {
   return (
       <ThemeProvider theme={theme}>
         
-        <Grid container direction="row-reverse" component="main" sx={{ height: '90vh' }}>
+        <Grid container direction="row-reverse" component="main" sx={{ height: '100vh' }}>
           <CssBaseline />
           {/* img */}
           <Grid item
@@ -68,7 +61,7 @@ function HomePage() {
                     Vende | Intercambia | Dona
                   </Typography>                  
                   <Typography variant="h5" gutterBottom>
-                    Tus Chácharas  
+                    Tus Chácharas | Cacharritos
                   </Typography>                  
                   <Typography variant="h5" >
                     y Ayuda Reciclando en Comunidad                

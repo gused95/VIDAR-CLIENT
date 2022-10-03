@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import LoadingComponent from "./components/Loading";
-import Navbar from "./components/Navbar/Navbar";
 import { getLoggedIn, logout } from "./services/auth";
 import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
@@ -9,10 +8,9 @@ import HomePage from "./pages/HomePage";
 import LogIn from "./pages/LogIn";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
-
-import { ThemeProvider } from '@mui/material/styles';
-import theme  from './myTheme'
 import Navbar2 from "./components/Navbar2/Navbar2";
+import Location from "./pages/Location";
+import AddCollection from "./pages/AddCollection";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -68,6 +66,8 @@ export default function App() {
         <Route path="/auth/login" element={<LogIn authenticate={authenticate}/>} />
         <Route path="/auth/signup" element={<Signup authenticate={authenticate}/>} />
         <Route path="/profile" element={<Profile user={user}/>} />
+        <Route path="/location" element={<Location />} />
+        <Route path="/add" element={<AddCollection />} />
       </Routes>
     </div>
   );

@@ -57,7 +57,7 @@ export default function Signup({ authenticate }) {
       name,
       lastName,
     };
-    console.log(credentials)
+    
     signup(credentials).then((res) => {
       if (!res.status) {
         // unsuccessful signup
@@ -69,7 +69,7 @@ export default function Signup({ authenticate }) {
       // successful signup
       USER_HELPERS.setUserToken(res.data.accessToken);
       authenticate(res.data.user);
-      navigate(PATHS.HOMEPAGE);
+      navigate("/location");//PATHS.HOMEPAGE
     });
   }
 
