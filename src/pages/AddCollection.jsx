@@ -3,17 +3,20 @@ import React from 'react'
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import Paper from '@mui/material/Paper';
+import MenuItem from '@mui/material/MenuItem';
+import axios from 'axios';
 
-const AddCollection = () => {
+const AddCollection = (props) => {
   
   const [form, setForm] = useState({
     title: '',
     description: '',
     pickLocation: '',
     pickSchedule: '',
+    postUntil: '',
   });
 
-  const { title, description, pickLocation, pickSchedule } = form;
+  const { title, description, pickLocation, pickSchedule, postUntil } = form;
 
 
 
@@ -29,10 +32,55 @@ const AddCollection = () => {
       description,
       pickLocation,
       pickSchedule,
+      postUntil,
     }
      console.log(data)
+
+     setForm({
+      title: '',
+      description: '',
+      pickLocation: '',
+      pickSchedule: '',
+      postUntil: '',
+    })
      return
+     axios
+      .post(`http://localhost:5005/collection`, data)
+          .then((response) => {
+            //Reset the state
+            setForm({
+              title: '',
+              description: '',
+              pickLocation: '',
+              pickSchedule: '',
+              postUntil: '',
+            })
+            props.refreshCollection();
+          })
   };
+
+// -----     options    -------
+const options = [
+  {
+    value: 1,
+    label: '1 semana',
+  },
+  {
+    value: 2,
+    label: '2 semanas',
+  },
+  {
+    value: 3,
+    label: '3 semanas',
+  },
+  {
+    value: 4,
+    label: '4 semanas',
+  },
+  
+];
+// -----     options    -------
+
 
   return (
     <Grid 
@@ -63,8 +111,26 @@ const AddCollection = () => {
           }}
         >
             
-              <Grid item xs={11} component={Paper} elevation={5} sx={{ m: 1 }}>
-                Foto
+              <Grid 
+                item
+                container 
+                xs={11} 
+                component={Paper} 
+                elevation={5} 
+                sx={{ m: 1, padding: 1 }}
+                alignItems='center'
+              >
+                <Grid item xs={3}>
+                  <Box width={30} height={30} border={1}>
+                    
+                  </Box>
+                </Grid>
+                
+                <Grid item xs="auto">
+                  <Button>Agrega imagen del objeto</Button>
+                  
+                </Grid>
+              
               </Grid>
 
               <Grid 
@@ -106,6 +172,7 @@ const AddCollection = () => {
                       maxRows={4}
                       variant="filled"
                       fullWidth
+                      placeholder='ej. bicicleta rodada 25 en buen estado'
                     />
                   </Grid>
                     
@@ -144,13 +211,40 @@ const AddCollection = () => {
                     onChange={handleInputChange}
                     variant="filled"
                     fullWidth
-                    placeholder='p.e. Fines de semana'
+                    placeholder='ej. Fines de semana de 11-12am'
                   />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="outlined-select-postUntil"
+                    select
+                    label="Select"
+                    type='number'
+                    name='postUntil'
+                    value={postUntil}
+                    onChange={handleInputChange}
+                    helperText="Días que estará visible este artículo"
+                    fullWidth
+                  >
+                    {options.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
                 </Grid>
 
               </Grid>
 
-            <Button variant='contained' sx={{ mt: 1 }}>Enviar</Button>
+            <Button 
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="secondary"
+              sx={{ mt: 3, mb: 2 }}
+            >
+                    Enviar
+            </Button>
           </Box>
         
         

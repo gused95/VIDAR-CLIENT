@@ -117,7 +117,7 @@ export default function Signup({ authenticate }) {
               }}
             >
               
-              <Typography component="h1" variant="h5">
+              <Typography component="h1" variant="h6">
                 Por favor ingresa tus datos 
                 y forma parte de la comunidad que da vida
               </Typography>
@@ -127,7 +127,7 @@ export default function Signup({ authenticate }) {
                   <Grid item xs={6}>
                     <TextField
                       margin="normal"
-                      label="Name"
+                      label="Nombre"
 
                       id="name"
                       type="text"
@@ -145,7 +145,7 @@ export default function Signup({ authenticate }) {
                   <Grid item xs={6}>
                     <TextField
                       margin="normal"
-                      label="Last Name"
+                      label="Apellido"
 
                       id="lastName"
                       type="text"

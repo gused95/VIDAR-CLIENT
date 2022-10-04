@@ -13,10 +13,14 @@ import * as CONSTS from "../../utils/consts";
 import Grid from '@mui/material/Grid'
 import { ThemeProvider } from '@emotion/react';
 import theme from '../../myTheme';
+import { color } from '@mui/system';
+
+
 
 
 const linkStyle = {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    color: 'white'
 }
 
 const Navbar2 = (props) => {
@@ -34,12 +38,24 @@ const Navbar2 = (props) => {
             >
                 <MenuIcon />
             </IconButton>
-            <Box >
+            <Box component='div'>
                 <Link to={PATHS.HOMEPAGE} style={linkStyle}>
-                    <Typography variant="h6" component="div">
+                    <Grid container spacing={1} alignItems='center'>
+                      
+                      <Grid item={6}>
+                        <Typography variant="h5" >
+                            {CONSTS.CAPITALIZED_APP.toUpperCase()}
+                        </Typography>
+                      </Grid>
+                      <Grid item={6}>
+                        <img src="../hoja.png" width="30vw"/>
+                      </Grid>
+
+                    </Grid>
+                    {/* <Typography variant="h6" component="div">
                     {CONSTS.CAPITALIZED_APP.toUpperCase()}
-                    <img src="../hoja.png" width="20vw"/>
-                    </Typography>
+                    
+                    </Typography> */}
                 </Link>
             </Box>
             <Box sx={{ flexGrow: 1 }}>
@@ -50,19 +66,35 @@ const Navbar2 = (props) => {
                     {props.user ? (
                     <>
                         <Grid container spacing={1} alignItems='center'>
+                        {/* <Grid item>
+                                <Link to={"/"} style={linkStyle}>
+                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
+                                        Logout
+                                    </Button>    
+                                </Link>
+                            </Grid> */}
                             <Grid item>
-                                <Link to={PATHS.PROTECTEDPAGE}>
-                                Protected Page
-                                </Link>  
+                                <Link to={"/location"} style={linkStyle}>
+                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
+                                        Ubicación
+                                    </Button>    
+                                </Link>
                             </Grid>
                             <Grid item>
-                                <Button color="secondary" variant='contained'  onClick={props.handleLogout}>
+                                <Link to={"/add"} style={linkStyle}>
+                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
+                                        Agregar un objeto
+                                    </Button>    
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
                                 {props.user.name}
                                 </Button>  
                             </Grid>
                             <Grid item>
                                 <Link to={"/"} style={linkStyle}>
-                                    <Button color="secondary" variant='contained'  onClick={props.handleLogout}>
+                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
                                         Logout
                                     </Button>    
                                 </Link>
@@ -73,17 +105,45 @@ const Navbar2 = (props) => {
                     ) : (
                     <>
                         <Grid container spacing={1}>
-                          <Grid item>
+                            {/* prueba  --------------------------------- */}
+
+                            {/* <Grid item>
+                                <Link to={"/location"} style={linkStyle}>
+                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
+                                        Ubicación
+                                    </Button>    
+                                </Link>
+                            </Grid> */}
+
+                            <Grid item>
+                                <Link to={"/add"} style={linkStyle}>
+                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
+                                        Agregar un objeto
+                                    </Button>    
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link to={"/myCollection"} style={linkStyle}>
+                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
+                                        Mis coleccion
+                                    </Button>    
+                                </Link>
+                            </Grid>
+                            {/* prueba  --------------------------------- */}
+
+                            
+                          {/* <Grid item>
                             <Link to={"/auth/signup"} style={linkStyle}>
-                                <Button color="secondary" variant='contained'>Registrate</Button>
+                                <Button color="secondary" variant='outlined'>Registrate</Button>
                             </Link>
                           </Grid>
                           <Grid item>
                             <Link to={"/auth/login"} style={linkStyle}>
-                                <Button color="secondary" variant='contained'>Iniciar Sesión</Button>
+                                <Button color="secondary" variant='outlined'>Iniciar Sesión</Button>
                             </Link>
-                          </Grid>
+                          </Grid> */}
                         </Grid>
+
                     </>
                     )}
             </Box>

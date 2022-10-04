@@ -41,6 +41,7 @@ export default function LogIn({ authenticate }) {
     lastName: "",
     showPassword: false,
   });
+  
   const { email, password } = form;
   const [error, setError] = useState(null);
   const navigate = useNavigate();
