@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 // reaponsive grid --------------------------
 import { experimentalStyled as styled } from '@mui/material/styles';
@@ -10,6 +10,7 @@ import MediaCard from '../components/MediaCard/MediaCard';
 import CardComp from '../components/CardComp/CardComp';
 import ObjectCard from '../components/ObjectCard/ObjectCard';
 import AddCollection from './AddCollection';
+import axios from 'axios';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -22,10 +23,30 @@ const Item = styled(Paper)(({ theme }) => ({
 // reaponsive grid --------------------------
 
 const MyCollection = () => {
+
+    const [collection, setCollection] = useState([])
+    
+    const API_URL = "http://localhost:5005"
+
+    const getAllCollection = () => {
+        axios
+            .get(`${API_URL}/celulares/getcol`)
+                .then((response) => setCollection(response.data))
+                .catch((error) => console.log(error))
+    }
+
+    // We set this effect will run only once, after the init. render
+    // by setting the empty dependency array - []
+
+    useEffect(() => {
+        getAllCollection();
+    }, [])
+
   return (
     <div>
+            {/* just for test: */}
     <Box component='div' sx={{ height: '100vh' }}>
-        <AddCollection />
+        <AddCollection refreshCollection={getAllCollection} />
     </Box>        
     <Grid 
       container component="main" 
@@ -77,15 +98,15 @@ const MyCollection = () => {
                     
                 >
                     
-                    {Array.from(Array(6)).map((_, index) => (
+                    {collection.map((object, index) => (
                     <Grid 
                         item xs={4} 
                         sm={8} 
                         md={4} 
                         key={index}
                     >
-                        <ObjectCard />
-                        {/* <CardComp /> */}
+                        <ObjectCard info={object}/>
+                        
                         
 
                     </Grid>

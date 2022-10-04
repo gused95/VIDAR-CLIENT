@@ -7,7 +7,16 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
 
-export default function ObjectCard() {
+export default function ObjectCard(props) {
+
+  const { 
+    title, 
+    description, 
+    pickLocation, 
+    pickSchedule, 
+    postUntil, 
+    collecType } = props.info;
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -18,8 +27,10 @@ export default function ObjectCard() {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Titulo
+          {title}
         </Typography>
+        {/* just for demo */}
+          {description}
         {/* <Typography variant="body2" color="text.secondary">
           Lizards are a widespread group of squamate reptiles, with over 6,000
           species, ranging across all continents except Antarctica

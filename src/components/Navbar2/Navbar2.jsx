@@ -118,14 +118,14 @@ const Navbar2 = (props) => {
                             <Grid item>
                                 <Link to={"/add"} style={linkStyle}>
                                     <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
-                                        Agregar un objeto
+                                        Agregar una colección
                                     </Button>    
                                 </Link>
                             </Grid>
                             <Grid item>
                                 <Link to={"/myCollection"} style={linkStyle}>
                                     <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
-                                        Mis coleccion
+                                        Mi coleccion
                                     </Button>    
                                 </Link>
                             </Grid>

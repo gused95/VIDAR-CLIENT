@@ -14,9 +14,17 @@ const AddCollection = (props) => {
     pickLocation: '',
     pickSchedule: '',
     postUntil: '',
+    collecType: '',
   });
 
-  const { title, description, pickLocation, pickSchedule, postUntil } = form;
+  const { 
+    title, 
+    description, 
+    pickLocation, 
+    pickSchedule, 
+    postUntil,
+    collecType, 
+  } = form;
 
 
 
@@ -33,19 +41,12 @@ const AddCollection = (props) => {
       pickLocation,
       pickSchedule,
       postUntil,
+      collecType,
     }
      console.log(data)
-
-     setForm({
-      title: '',
-      description: '',
-      pickLocation: '',
-      pickSchedule: '',
-      postUntil: '',
-    })
-     return
+     
      axios
-      .post(`http://localhost:5005/collection`, data)
+      .post(`http://localhost:5005/celulares/collection`, data)
           .then((response) => {
             //Reset the state
             setForm({
@@ -54,12 +55,32 @@ const AddCollection = (props) => {
               pickLocation: '',
               pickSchedule: '',
               postUntil: '',
+              collecType: '',
             })
             props.refreshCollection();
           })
+          .catch((error) => console.log(error))
   };
 
-// -----     options    -------
+// -----     options for collecType   -------
+const optionsCollec = [
+  {
+    value: 'V',
+    label: 'Vender',
+  },
+  {
+    value: 'I',
+    label: 'Intercambiar',
+  },
+  {
+    value: 'D',
+    label: 'Donar',
+  },
+  
+];
+// -----     options for collecType   -------
+
+// -----     options for postUntil   -------
 const options = [
   {
     value: 1,
@@ -79,7 +100,7 @@ const options = [
   },
   
 ];
-// -----     options    -------
+// -----     options for postUntil   -------
 
 
   return (
@@ -122,15 +143,48 @@ const options = [
               >
                 <Grid item xs={3}>
                   <Box width={30} height={30} border={1}>
-                    
                   </Box>
                 </Grid>
                 
                 <Grid item xs="auto">
                   <Button>Agrega imagen del objeto</Button>
-                  
                 </Grid>
               
+              </Grid>
+
+{/* this is the chido */}
+              <Grid 
+                item 
+                container 
+                xs={11} 
+                component={Paper} 
+                elevation={5} 
+                sx={{ m: 1, padding: 1 }}
+                justifyContent='center'
+                alignContent='center'
+                rowSpacing={2}
+              >
+                <Grid item xs={12}>
+                  <TextField
+                    id="select-collecType"
+                    select
+                    label="Select"
+                    type='text'
+                    name='collecType'
+                    value={collecType}
+                    onChange={handleInputChange}
+                    helperText="¿Dónde quieres agregar este objeto?"
+                    fullWidth
+                    color='secondary'
+                    variant='filled'
+                  >
+                    {optionsCollec.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
               </Grid>
 
               <Grid 
@@ -177,6 +231,8 @@ const options = [
                   </Grid>
                     
               </Grid>
+
+              
 
               <Grid 
                 item 
