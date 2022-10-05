@@ -62,7 +62,7 @@ const Navbar2 = (props) => {
 
             </Box>
             <Box>
-                    {/* Este es el menu que se muestra cuando un user inicio sesion */}
+                    
                     {props.user ? (
                     <>
                         <Grid container spacing={1} alignItems='center'>
@@ -104,6 +104,8 @@ const Navbar2 = (props) => {
                     </>
                     ) : (
                     <>
+                        {/* Este es el menu que se muestra cuando un user inicio sesion */}
+                        
                         <Grid container spacing={1}>
                             {/* prueba  --------------------------------- */}
 
@@ -132,7 +134,7 @@ const Navbar2 = (props) => {
                             {/* prueba  --------------------------------- */}
 
                             
-                          {/* <Grid item>
+                          <Grid item>
                             <Link to={"/auth/signup"} style={linkStyle}>
                                 <Button color="secondary" variant='outlined'>Registrate</Button>
                             </Link>
@@ -141,7 +143,7 @@ const Navbar2 = (props) => {
                             <Link to={"/auth/login"} style={linkStyle}>
                                 <Button color="secondary" variant='outlined'>Iniciar Sesión</Button>
                             </Link>
-                          </Grid> */}
+                          </Grid>
                         </Grid>
 
                     </>

@@ -12,6 +12,7 @@ import Navbar2 from "./components/Navbar2/Navbar2";
 import Location from "./pages/Location";
 import AddCollection from "./pages/AddCollection";
 import MyCollection from "./pages/MyCollection";
+import DetailsCollection from "./pages/DetailsCollection";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -70,6 +71,7 @@ export default function App() {
         <Route path="/location" element={<Location />} />
         <Route path="/add" element={<AddCollection />} />
         <Route path="/myCollection" element={<MyCollection />} />
+        <Route path="/myCollection/:id" element={<DetailsCollection />} />
       </Routes>
     </div>
   );

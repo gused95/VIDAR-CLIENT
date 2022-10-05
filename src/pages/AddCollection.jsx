@@ -46,7 +46,7 @@ const AddCollection = (props) => {
      console.log(data)
      
      axios
-      .post(`http://localhost:5005/celulares/collection`, data)
+      .post(`http://localhost:5005/collections/addnew`, data)
           .then((response) => {
             //Reset the state
             setForm({

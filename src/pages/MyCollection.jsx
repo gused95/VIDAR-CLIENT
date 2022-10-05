@@ -30,7 +30,7 @@ const MyCollection = () => {
 
     const getAllCollection = () => {
         axios
-            .get(`${API_URL}/celulares/getcol`)
+            .get(`${API_URL}/collections/getcols`)
                 .then((response) => setCollection(response.data))
                 .catch((error) => console.log(error))
     }
@@ -105,10 +105,8 @@ const MyCollection = () => {
                         md={4} 
                         key={index}
                     >
-                        <ObjectCard info={object}/>
+                        <ObjectCard info={object} key={object._id}/>
                         
-                        
-
                     </Grid>
                     ))}
                 </Grid>

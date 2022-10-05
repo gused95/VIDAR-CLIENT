@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 export default function ObjectCard(props) {
 
@@ -15,7 +16,8 @@ export default function ObjectCard(props) {
     pickLocation, 
     pickSchedule, 
     postUntil, 
-    collecType } = props.info;
+    collecType,
+    _id } = props.info;
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -38,6 +40,7 @@ export default function ObjectCard(props) {
       </CardContent>
       <CardActions>
         {/* <Box width='40px' height='40px' border={1} ></Box> for colecciones en general*/}
+        <Link to={`/myCollection/${_id}`}><Button size="small" variant='contained'>Detalles</Button></Link>
         <Button size="small" variant='contained'>Editar</Button>
         <Button size="small" color='secondary' variant='contained'>Borrar</Button>
       </CardActions>
