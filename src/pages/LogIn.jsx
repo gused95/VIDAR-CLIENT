@@ -38,7 +38,6 @@ export default function LogIn({ authenticate }) {
   const [form, setForm] = useState({
     email: "",
     password: "",
-    lastName: "",
     showPassword: false,
   });
   

@@ -48,7 +48,7 @@ export default function ObjectCard(props) {
         {/* <Box width='40px' height='40px' border={1} ></Box> for colecciones en general*/}
         
         <Button size="small" variant='contained'><Link to={`/myCollection/${_id}` } style={linkStyle}>Detalles</Link></Button>
-        
+        <Button size="small" variant='contained' color='secondary'>{collecType}</Button>
       </CardActions>
     </Card>
   );

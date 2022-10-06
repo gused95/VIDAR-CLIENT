@@ -66,31 +66,32 @@ const Navbar2 = (props) => {
                     {props.user ? (
                     <>
                         <Grid container spacing={1} alignItems='center'>
-                        {/* <Grid item>
-                                <Link to={"/"} style={linkStyle}>
-                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
-                                        Logout
-                                    </Button>    
-                                </Link>
-                            </Grid> */}
+                       
                             <Grid item>
                                 <Link to={"/location"} style={linkStyle}>
-                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
+                                    <Button color="secondary" variant='outlined'  >
                                         Ubicación
                                     </Button>    
                                 </Link>
                             </Grid>
                             <Grid item>
                                 <Link to={"/add"} style={linkStyle}>
-                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
-                                        Agregar un objeto
+                                    <Button color="secondary" variant='outlined'  >
+                                        Agregar una colección
                                     </Button>    
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
-                                {props.user.name}
-                                </Button>  
+                                <Link to={"/myCollection"} style={linkStyle}>
+                                    <Button color="secondary" variant='outlined' >
+                                        Mi coleccion
+                                    </Button>    
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                
+                                {(`Bienvenidx ${props.user.name}`).toUpperCase()}
+                                
                             </Grid>
                             <Grid item>
                                 <Link to={"/"} style={linkStyle}>
@@ -107,33 +108,6 @@ const Navbar2 = (props) => {
                         {/* Este es el menu que se muestra cuando un user inicio sesion */}
                         
                         <Grid container spacing={1}>
-                            {/* prueba  --------------------------------- */}
-
-                            {/* <Grid item>
-                                <Link to={"/location"} style={linkStyle}>
-                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
-                                        Ubicación
-                                    </Button>    
-                                </Link>
-                            </Grid> */}
-
-                            <Grid item>
-                                <Link to={"/add"} style={linkStyle}>
-                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
-                                        Agregar una colección
-                                    </Button>    
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link to={"/myCollection"} style={linkStyle}>
-                                    <Button color="secondary" variant='outlined'  onClick={props.handleLogout}>
-                                        Mi coleccion
-                                    </Button>    
-                                </Link>
-                            </Grid>
-                            {/* prueba  --------------------------------- */}
-
-                            
                           <Grid item>
                             <Link to={"/auth/signup"} style={linkStyle}>
                                 <Button color="secondary" variant='outlined'>Registrate</Button>

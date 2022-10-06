@@ -5,6 +5,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import ObjectCard from '../components/ObjectCard/ObjectCard';
 import { Button } from '@mui/material';
 import DetailsCard from '../components/DetailsCard/DetailsCard';
+import Container from '@mui/material/Container';
 
 
 const API_URL = "http://localhost:5005";
@@ -48,7 +49,7 @@ const DetailsCollection = () => {
  
   
   return (
-    <div >
+    <Container >
       <h1>Detalles</h1>
       {collection && (
         <>
@@ -72,7 +73,7 @@ const DetailsCollection = () => {
           Borrar
         </Button>
       </Link>
-    </div>
+    </Container>
   )
 }
 

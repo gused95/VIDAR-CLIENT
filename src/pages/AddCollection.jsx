@@ -53,7 +53,11 @@ const AddCollection = (props) => {
      console.log(data)
      
      axios
-      .post(`http://localhost:5005/collections/addnew`, data)
+      .post(
+        // `${process.env.REACT_APP_SERVER_MY_URL}/collections/addnew`,
+        `${process.env.REACT_APP_SERVER_MY_URL}/collections/addnew`,
+        data
+        ) 
           .then((response) => {
             //Reset the state
             setForm({
@@ -101,15 +105,15 @@ const AddCollection = (props) => {
 // -----     options for collecType   -------
 const optionsCollec = [
   {
-    value: 'V',
+    value: 'Venta',
     label: 'Vender',
   },
   {
-    value: 'I',
-    label: 'Intercambiar',
+    value: 'Intercambio',
+    label: 'Intercambio',
   },
   {
-    value: 'D',
+    value: 'Donación',
     label: 'Donar',
   },
   
@@ -146,6 +150,7 @@ const options = [
       {...form}
       options1={optionsCollec}
       options2={options}
+      imageUrl={imageUrl}
     />
   )
 }

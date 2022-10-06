@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import CollectionForm from "../components/CollectionForm/CollectionForm";
+import service from "../api/service";
 
-const API_URL = "http://localhost:5005";
+const API_URL = `${process.env.REACT_APP_SERVER_MY_URL}`;
 
 function EditCollection() {
+
+  const [imageUrl, setImageUrl] = useState("")
 
   const [form, setForm] = useState({
     title: '',
@@ -43,6 +46,7 @@ function EditCollection() {
       .then((response) => {
         const oneCollection = response.data;
         setForm(oneCollection);
+        setImageUrl(oneCollection.imageUrl)
       })
       .catch((error) => console.log(error));
   }, [id]);
@@ -60,6 +64,7 @@ function EditCollection() {
       pickSchedule,
       postUntil,
       collecType,
+      imageUrl,
     }
 
   //        update collection     ----------------
@@ -86,22 +91,45 @@ function EditCollection() {
       .catch((err) => console.log(err));
   };
 
+  // -----------  handleFormSubmission ------------
+
+  // ******** this method handles the file upload ********
+  const handleFileUpload = (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    service
+      .uploadImage(uploadData)
+      .then(response => {
+        // console.log("response is: ", response);
+        // response carries "fileUrl" which we can use to update the state
+        setImageUrl(response.fileUrl);
+        console.log(response)
+      })
+      .catch(err => console.log("Error while uploading the file: ", err));
+  };
+
   // -----     options for collecType   -------
-const optionsCollec = [
-  {
-    value: 'V',
-    label: 'Vender',
-  },
-  {
-    value: 'I',
-    label: 'Intercambiar',
-  },
-  {
-    value: 'D',
-    label: 'Donar',
-  },
-  
-];
+  const optionsCollec = [
+    {
+      value: 'Venta',
+      label: 'Vender',
+    },
+    {
+      value: 'Intercambio',
+      label: 'Intercambio',
+    },
+    {
+      value: 'Donación',
+      label: 'Donar',
+    },
+    
+  ];
 // -----     options for collecType   -------
 
 // -----     options for postUntil   -------
@@ -135,9 +163,12 @@ const options = [
         <CollectionForm 
           handleFormSubmission={handleFormSubmission}
           handleInputChange={handleInputChange}
+          handleFileUpload={handleFileUpload}
           {...form}
           options1={optionsCollec}
           options2={options}
+          imageUrl={imageUrl}
+          
         />
       </div>
     </div>

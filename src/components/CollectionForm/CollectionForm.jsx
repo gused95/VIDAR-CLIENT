@@ -3,7 +3,10 @@ import React from 'react'
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import MenuItem from '@mui/material/MenuItem';
-
+import FolderIcon from '@mui/icons-material/Folder';
+import Avatar from '@mui/material/Avatar';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import { green, pink } from '@mui/material/colors';
 
 const CollectionForm = (props) => {
 
@@ -19,6 +22,7 @@ const CollectionForm = (props) => {
         handleFileUpload,
         options1,
         options2,
+        imageUrl,
       } = props;    
     
     
@@ -59,16 +63,63 @@ const CollectionForm = (props) => {
                 component={Paper} 
                 elevation={5} 
                 sx={{ m: 1, padding: 1 }}
-                alignItems='center'
+                
+
               >
-                <Grid item xs={3}>
-                  <Box width={30} height={30} border={1}>
-                  </Box>
+                <Grid 
+                  item 
+                  xs={12}
+                  
+                  sx={{
+                      my: 1,
+                      mx: 1,
+                    }}
+                >
+                    {imageUrl ? 
+                    (
+                    <>
+                      <img src={imageUrl} alt="" width='100%' height='100%' object-fit='cover'/>
+                    </>
+                    ) : (
+                    <>
+                      <Avatar 
+                        sx=
+                        {{ 
+                        bgcolor: green[500], 
+                        width: '100%', 
+                        height: '20vw'
+                        }} 
+                        variant="rounded"
+                      >
+                        <AddAPhotoIcon 
+                          sx=
+                          {{ 
+                          bgcolor: green[500], 
+                          width: '90%', 
+                          height: '10vw'
+                          }} 
+                        />
+                      </Avatar>
+                    </>
+                    )
+
+                    
+                    }
+                    
                 </Grid>
                 
-                <Grid item xs="auto">
-                <input type="file" onChange={handleFileUpload} />
-                  <Button>Agrega imagen del objeto</Button>
+                <Grid 
+                  item 
+                  xs={12}
+                  
+                  sx={{
+                    my: 1,
+                    mx: 1,
+                    display: 'flex',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <input type="file" onChange={handleFileUpload} />
                 </Grid>
               
               </Grid>

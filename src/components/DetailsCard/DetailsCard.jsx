@@ -16,6 +16,7 @@ export default function DetailsCard(props) {
     pickSchedule, 
     postUntil, 
     collecType,
+    imageUrl,
     _id } = props;
 
     const linkStyle = {
@@ -28,33 +29,39 @@ export default function DetailsCard(props) {
       <CardMedia
         component="img"
         height="140"
-        image="../venta.jpg"
+        image={imageUrl}
         alt="green iguana"
       />
-      <CardContent>
+      <CardContent
+        sx={{ 
+          height: '30vh',
+          // display: 'flex',
+          // alignContent: 'space-around'
+        }}
+      >
 
         <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
         
-        <Typography variant="body2" color="text.secondary">
-        {description}
+        <Typography variant="body3" color="text.secondary">
+        Descripción: {description}
         </Typography>
 
         <Typography variant="body2" color="text.secondary">
-        {pickLocation}
+        Ubicación aprox. de recolección: {pickLocation}
         </Typography>
 
         <Typography variant="body2" color="text.secondary">
-        {pickSchedule}
+        Horarios de recolección: {pickSchedule}
         </Typography>
 
         <Typography variant="body2" color="text.secondary">
-        {postUntil}
+        Visible por: {postUntil} semanas
         </Typography>
 
         <Typography variant="body2" color="text.secondary">
-        {collecType}
+        Tipo de colección: {collecType}
         </Typography>
 
 
