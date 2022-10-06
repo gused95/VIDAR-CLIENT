@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
-export default function ObjectCard(props) {
+export default function DetailsCard(props) {
 
   const { 
     title, 
@@ -16,9 +16,8 @@ export default function ObjectCard(props) {
     pickSchedule, 
     postUntil, 
     collecType,
-    imageUrl,
     _id } = props;
-    
+
     const linkStyle = {
       textDecoration: 'none',
       color: 'white'
@@ -29,25 +28,41 @@ export default function ObjectCard(props) {
       <CardMedia
         component="img"
         height="140"
-        image={props?.imageUrl}
+        image="../venta.jpg"
         alt="green iguana"
       />
       <CardContent>
-        
+
         <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
-        {/* just for demo */}
-          {description}
-        {/* <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography> */}
+        
+        <Typography variant="body2" color="text.secondary">
+        {description}
+        </Typography>
+
+        <Typography variant="body2" color="text.secondary">
+        {pickLocation}
+        </Typography>
+
+        <Typography variant="body2" color="text.secondary">
+        {pickSchedule}
+        </Typography>
+
+        <Typography variant="body2" color="text.secondary">
+        {postUntil}
+        </Typography>
+
+        <Typography variant="body2" color="text.secondary">
+        {collecType}
+        </Typography>
+
+
       </CardContent>
       <CardActions>
-        {/* <Box width='40px' height='40px' border={1} ></Box> for colecciones en general*/}
+        {/* <Box width='40px' height='40px' border={1} ></Box> for colecciones en general, avatar del usuario*/}
         
-        <Button size="small" variant='contained'><Link to={`/myCollection/${_id}` } style={linkStyle}>Detalles</Link></Button>
+        
         
       </CardActions>
     </Card>

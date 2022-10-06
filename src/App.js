@@ -13,10 +13,12 @@ import Location from "./pages/Location";
 import AddCollection from "./pages/AddCollection";
 import MyCollection from "./pages/MyCollection";
 import DetailsCollection from "./pages/DetailsCollection";
+import EditCollection from "./pages/EditCollection";
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const  [added, setAdded ] = useState("")
 
   useEffect(() => {
     const accessToken = USER_HELPERS.getUserToken();
@@ -57,6 +59,20 @@ export default function App() {
   if (isLoading) {
     return <LoadingComponent />;
   }
+
+  
+  // -----------  gossip ------------
+
+  function gossip(incomingData) {
+    console.log("in -->", incomingData)
+    setAdded(incomingData)
+  }
+
+  
+  // -----------  gossip ------------
+
+  
+
   return (
     <div>
       <Navbar2 handleLogout={handleLogout} user={user}/>
@@ -69,9 +85,10 @@ export default function App() {
         <Route path="/auth/signup" element={<Signup authenticate={authenticate}/>} />
         <Route path="/profile" element={<Profile user={user}/>} />
         <Route path="/location" element={<Location />} />
-        <Route path="/add" element={<AddCollection />} />
+        <Route path="/add" element={<AddCollection channel={gossip}/>} />
         <Route path="/myCollection" element={<MyCollection />} />
         <Route path="/myCollection/:id" element={<DetailsCollection />} />
+        <Route path='/myCollection/edit/:id' element={<EditCollection />} />
       </Routes>
     </div>
   );

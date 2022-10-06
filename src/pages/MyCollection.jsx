@@ -26,6 +26,7 @@ const MyCollection = () => {
 
     const [collection, setCollection] = useState([])
     
+    
     const API_URL = "http://localhost:5005"
 
     const getAllCollection = () => {
@@ -45,9 +46,9 @@ const MyCollection = () => {
   return (
     <div>
             {/* just for test: */}
-    <Box component='div' sx={{ height: '100vh' }}>
+    {/* <Box component='div' sx={{ height: '100vh' }}>
         <AddCollection refreshCollection={getAllCollection} />
-    </Box>        
+    </Box>         */}
     <Grid 
       container component="main" 
       sx={{ height: '100vh' }} 
@@ -98,14 +99,14 @@ const MyCollection = () => {
                     
                 >
                     
-                    {collection.map((object, index) => (
+                    {collection?.map((object, index) => (
                     <Grid 
                         item xs={4} 
                         sm={8} 
                         md={4} 
                         key={index}
                     >
-                        <ObjectCard info={object} key={object._id}/>
+                        <ObjectCard {...object} key={object._id}/>
                         
                     </Grid>
                     ))}

@@ -1,13 +1,15 @@
-import { Box, Button, Grid } from '@mui/material'
 import React from 'react'
-import TextField from '@mui/material/TextField';
 import { useState } from 'react';
-import Paper from '@mui/material/Paper';
-import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
+import CollectionForm from '../components/CollectionForm/CollectionForm';
+import { useNavigate } from 'react-router-dom';
+// import the service file since we need it to send/get the data to/from the server
+import service from '../api/service';
 
 const AddCollection = (props) => {
   
+  const [imageUrl, setImageUrl] = useState("")
+
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -15,6 +17,7 @@ const AddCollection = (props) => {
     pickSchedule: '',
     postUntil: '',
     collecType: '',
+    
   });
 
   const { 
@@ -24,14 +27,17 @@ const AddCollection = (props) => {
     pickSchedule, 
     postUntil,
     collecType, 
+    
   } = form;
 
-
+  const navigate = useNavigate();
 
   function handleInputChange(event) {
     const { name, value } = event.target
     return setForm({ ...form, [name]: value});
   };
+
+  // -----------  handleFormSubmission ------------
 
   const handleFormSubmission = (event) => {
     event.preventDefault();
@@ -42,6 +48,7 @@ const AddCollection = (props) => {
       pickSchedule,
       postUntil,
       collecType,
+      imageUrl,
     }
      console.log(data)
      
@@ -56,10 +63,39 @@ const AddCollection = (props) => {
               pickSchedule: '',
               postUntil: '',
               collecType: '',
-            })
-            props.refreshCollection();
+              
+            });
+            
+            setImageUrl("")
+
+            // navigate to another page
+            navigate("/myCollection");
+
           })
           .catch((error) => console.log(error))
+  };
+
+// -----------  handleFormSubmission ------------
+
+  // ******** this method handles the file upload ********
+  const handleFileUpload = (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    service
+      .uploadImage(uploadData)
+      .then(response => {
+        // console.log("response is: ", response);
+        // response carries "fileUrl" which we can use to update the state
+        setImageUrl(response.fileUrl);
+        console.log(response)
+      })
+      .catch(err => console.log("Error while uploading the file: ", err));
   };
 
 // -----     options for collecType   -------
@@ -102,210 +138,15 @@ const options = [
 ];
 // -----     options for postUntil   -------
 
-
   return (
-    <Grid 
-      container component="main" 
-      sx={{ height: '100vh' }} 
-      justifyContent='center'
-      alignItems='center'
-    >
-      <Grid  
-        item 
-        container 
-        xs={12} 
-        sm={8} 
-        md={5} 
-        component={Paper} 
-        elevation={6} 
-        square
-        justifyContent='center'
-      >
-        
-        <Box component="form" onSubmit={handleFormSubmission}
-          sx={{
-            my: 1,
-            mx: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-            
-              <Grid 
-                item
-                container 
-                xs={11} 
-                component={Paper} 
-                elevation={5} 
-                sx={{ m: 1, padding: 1 }}
-                alignItems='center'
-              >
-                <Grid item xs={3}>
-                  <Box width={30} height={30} border={1}>
-                  </Box>
-                </Grid>
-                
-                <Grid item xs="auto">
-                  <Button>Agrega imagen del objeto</Button>
-                </Grid>
-              
-              </Grid>
-
-{/* this is the chido */}
-              <Grid 
-                item 
-                container 
-                xs={11} 
-                component={Paper} 
-                elevation={5} 
-                sx={{ m: 1, padding: 1 }}
-                justifyContent='center'
-                alignContent='center'
-                rowSpacing={2}
-              >
-                <Grid item xs={12}>
-                  <TextField
-                    id="select-collecType"
-                    select
-                    label="Select"
-                    type='text'
-                    name='collecType'
-                    value={collecType}
-                    onChange={handleInputChange}
-                    helperText="¿Dónde quieres agregar este objeto?"
-                    fullWidth
-                    color='secondary'
-                    variant='filled'
-                  >
-                    {optionsCollec.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-              </Grid>
-
-              <Grid 
-                item 
-                container 
-                xs={11} 
-                component={Paper} 
-                elevation={5} 
-                sx={{ m: 1, padding: 1 }}
-                justifyContent='center'
-                alignContent='center'
-                rowSpacing={2}
-
-                
-              >
-                  <Grid item xs={12}>
-                    <TextField
-                      id="title"
-                      label="Título"
-                      type='text'
-                      name='title'
-                      value={title}
-                      onChange={handleInputChange}
-                      variant="filled"
-                      fullWidth
-                      autoFocus
-                    />
-                  </Grid>
-                  
-                  <Grid item xs={12}>
-                    <TextField
-                      id="description"
-                      label="Descripción"
-                      type='text'
-                      name='description'
-                      value={description}
-                      onChange={handleInputChange}
-                      multiline
-                      maxRows={4}
-                      variant="filled"
-                      fullWidth
-                      placeholder='ej. bicicleta rodada 25 en buen estado'
-                    />
-                  </Grid>
-                    
-              </Grid>
-
-              
-
-              <Grid 
-                item 
-                container 
-                xs={11} 
-                component={Paper} 
-                elevation={5} 
-                sx={{ m: 1, padding: 1 }}
-                justifyContent='center'
-                alignContent='center'
-                rowSpacing={2}
-              >
-                <Grid item xs={12}>
-                  <TextField
-                    id="pickLocation"
-                    label="Ubicación aproximada de recolección"
-                    type='text'
-                    name='pickLocation'
-                    value={pickLocation}
-                    onChange={handleInputChange}
-                    variant="filled"
-                    fullWidth
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    id="pickSchedule"
-                    label="Horarios de recolección"
-                    type='text'
-                    name='pickSchedule'
-                    value={pickSchedule}
-                    onChange={handleInputChange}
-                    variant="filled"
-                    fullWidth
-                    placeholder='ej. Fines de semana de 11-12am'
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    id="outlined-select-postUntil"
-                    select
-                    label="Select"
-                    type='number'
-                    name='postUntil'
-                    value={postUntil}
-                    onChange={handleInputChange}
-                    helperText="Días que estará visible este artículo"
-                    fullWidth
-                  >
-                    {options.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-
-              </Grid>
-
-            <Button 
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="secondary"
-              sx={{ mt: 3, mb: 2 }}
-            >
-                    Enviar
-            </Button>
-          </Box>
-        
-        
-      </Grid>
-    </Grid>
+    <CollectionForm 
+      handleFormSubmission={handleFormSubmission}
+      handleInputChange={handleInputChange}
+      handleFileUpload={handleFileUpload}
+      {...form}
+      options1={optionsCollec}
+      options2={options}
+    />
   )
 }
 
