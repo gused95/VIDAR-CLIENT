@@ -38,13 +38,15 @@ export default function ObjectCard(props) {
         <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
-        <Typography gutterBottom variant="h5" component="div">
-          {title}
+        <Typography gutterBottom variant="h6" component="div">
+          {collecType}
         </Typography>
-        {collecType}
+
+        
+
         {price && (
         <>
-          <Typography gutterBottom variant="h6" component="div">
+          <Typography gutterBottom variant="h7" component="div">
             Precio: ${price}
           </Typography>
         </>          
