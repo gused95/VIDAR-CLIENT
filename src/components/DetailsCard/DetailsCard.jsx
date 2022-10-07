@@ -7,6 +7,19 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
+
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import PlaceIcon from '@mui/icons-material/Place';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+
 export default function DetailsCard(props) {
 
   const { 
@@ -25,18 +38,17 @@ export default function DetailsCard(props) {
   }
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 500 }}>
       <CardMedia
         component="img"
-        height="140"
+        height="200"
         image={imageUrl}
         alt="green iguana"
       />
       <CardContent
         sx={{ 
-          height: '30vh',
-          // display: 'flex',
-          // alignContent: 'space-around'
+          maxHeight: '100vh',
+          
         }}
       >
 
@@ -44,33 +56,59 @@ export default function DetailsCard(props) {
           {title}
         </Typography>
         
+        <Typography variant="body3" color="text.primary">
+        Descripción: 
+        </Typography>
         <Typography variant="body3" color="text.secondary">
-        Descripción: {description}
+        {description}
         </Typography>
-
-        <Typography variant="body2" color="text.secondary">
-        Ubicación aprox. de recolección: {pickLocation}
-        </Typography>
-
-        <Typography variant="body2" color="text.secondary">
-        Horarios de recolección: {pickSchedule}
-        </Typography>
-
-        <Typography variant="body2" color="text.secondary">
-        Visible por: {postUntil} semanas
-        </Typography>
-
-        <Typography variant="body2" color="text.secondary">
-        Tipo de colección: {collecType}
-        </Typography>
-
+        
+        <List
+          sx={{
+            width: '100%',
+            maxWidth: 500,
+            bgcolor: 'background.paper',
+          }}
+        >
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: 'red' }} >
+                <PlaceIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Ubicación aprox. de recolección:" secondary={pickLocation} />
+          </ListItem>
+          <Divider variant="inset" component="li" />
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: 'purple' }}>
+                <AccessTimeIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Horarios de recolección:" secondary={pickSchedule} />
+          </ListItem>
+          <Divider variant="inset" component="li" />
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: 'teal' }} >
+                <VisibilityIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Visible por:" secondary={`${postUntil} semanas`}  />
+          </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar sx={{ bgcolor: 'green' }} >
+                <LibraryBooksIcon />
+              </Avatar  >
+            </ListItemAvatar>
+            <ListItemText primary="Tipo de colección:" secondary={collecType} />
+          </ListItem>
+          <Divider variant="inset" component="li" />
+        </List>
 
       </CardContent>
       <CardActions>
-        {/* <Box width='40px' height='40px' border={1} ></Box> for colecciones en general, avatar del usuario*/}
-        
-        
-        
       </CardActions>
     </Card>
   );

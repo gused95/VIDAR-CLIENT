@@ -11,6 +11,8 @@ import CardComp from '../components/CardComp/CardComp';
 import ObjectCard from '../components/ObjectCard/ObjectCard';
 import AddCollection from './AddCollection';
 import axios from 'axios';
+import { brown, cyan, amber } from '@mui/material/colors';
+
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -73,7 +75,7 @@ const MyCollection = () => {
             <Box 
                 sx={{ 
                     flexGrow: 1, 
-                    backgroundColor: 'pink', 
+                    backgroundColor: amber['A100'], 
                     padding: 2,
                     display: 'flex',
                     justifyContent: 'center',

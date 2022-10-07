@@ -3,10 +3,9 @@ import React from 'react'
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import MenuItem from '@mui/material/MenuItem';
-import FolderIcon from '@mui/icons-material/Folder';
 import Avatar from '@mui/material/Avatar';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { green, pink } from '@mui/material/colors';
+import { green } from '@mui/material/colors';
 
 const CollectionForm = (props) => {
 
