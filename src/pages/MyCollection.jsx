@@ -5,13 +5,9 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { Margin } from '@mui/icons-material';
-import MediaCard from '../components/MediaCard/MediaCard';
-import CardComp from '../components/CardComp/CardComp';
 import ObjectCard from '../components/ObjectCard/ObjectCard';
-import AddCollection from './AddCollection';
 import axios from 'axios';
-import { brown, cyan, amber } from '@mui/material/colors';
+import { amber } from '@mui/material/colors';
 
 
 const Item = styled(Paper)(({ theme }) => ({

@@ -3,10 +3,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
-
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -30,12 +27,9 @@ export default function DetailsCard(props) {
     postUntil, 
     collecType,
     imageUrl,
+    price,
     _id } = props;
 
-    const linkStyle = {
-      textDecoration: 'none',
-      color: 'white'
-  }
 
   return (
     <Card sx={{ maxWidth: 500 }}>
@@ -43,7 +37,7 @@ export default function DetailsCard(props) {
         component="img"
         height="200"
         image={imageUrl}
-        alt="green iguana"
+        alt="some image"
       />
       <CardContent
         sx={{ 
@@ -56,9 +50,18 @@ export default function DetailsCard(props) {
           {title}
         </Typography>
         
+        {price && (
+        <>
+          <Typography gutterBottom variant="h6" component="div">
+            Precio: ${price}
+          </Typography>
+        </>          
+        )}
+
         <Typography variant="body3" color="text.primary">
-        Descripción: 
+        {`Descripción: `}
         </Typography>
+
         <Typography variant="body3" color="text.secondary">
         {description}
         </Typography>

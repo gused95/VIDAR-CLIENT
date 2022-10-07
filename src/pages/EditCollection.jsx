@@ -17,6 +17,7 @@ function EditCollection() {
     pickSchedule: '',
     postUntil: '',
     collecType: '',
+    price: '',
   });
 
   const { 
@@ -26,6 +27,7 @@ function EditCollection() {
     pickSchedule, 
     postUntil,
     collecType, 
+    price,
   } = form;
 
   function handleInputChange(event) {
@@ -65,6 +67,7 @@ function EditCollection() {
       postUntil,
       collecType,
       imageUrl,
+      price,
     }
 
   //        update collection     ----------------
@@ -76,20 +79,6 @@ function EditCollection() {
       });
   };
 
-//        delete collection     ----------------
-
-  const deleteCollection = () => {
-
-    // Make a DELETE request to delete the Collection
-    axios
-      .delete(`${API_URL}/collections/details/${id}`)
-      .then(() => {
-        // Once the delete request is resolved successfully
-        // navigate back to the list of Collections.
-        navigate("/myCollection");
-      })
-      .catch((err) => console.log(err));
-  };
 
   // -----------  handleFormSubmission ------------
 
@@ -109,7 +98,7 @@ function EditCollection() {
         // console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
         setImageUrl(response.fileUrl);
-        console.log(response)
+        
       })
       .catch(err => console.log("Error while uploading the file: ", err));
   };

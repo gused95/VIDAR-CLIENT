@@ -17,7 +17,7 @@ const AddCollection = (props) => {
     pickSchedule: '',
     postUntil: '',
     collecType: '',
-    
+    price: '',
   });
 
   const { 
@@ -27,7 +27,7 @@ const AddCollection = (props) => {
     pickSchedule, 
     postUntil,
     collecType, 
-    
+    price,
   } = form;
 
   const navigate = useNavigate();
@@ -49,8 +49,9 @@ const AddCollection = (props) => {
       postUntil,
       collecType,
       imageUrl,
+      price,
     }
-     console.log(data)
+     
      
      axios
       .post(
@@ -67,7 +68,7 @@ const AddCollection = (props) => {
               pickSchedule: '',
               postUntil: '',
               collecType: '',
-              
+              price: '',
             });
             
             setImageUrl("")
@@ -97,7 +98,7 @@ const AddCollection = (props) => {
         // console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
         setImageUrl(response.fileUrl);
-        console.log(response)
+        
       })
       .catch(err => console.log("Error while uploading the file: ", err));
   };

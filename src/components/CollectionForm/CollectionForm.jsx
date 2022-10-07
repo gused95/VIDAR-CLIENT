@@ -22,6 +22,7 @@ const CollectionForm = (props) => {
         options1,
         options2,
         imageUrl,
+        price
       } = props;    
     
     
@@ -139,7 +140,7 @@ const CollectionForm = (props) => {
                   <TextField
                     id="select-collecType"
                     select
-                    label="Select"
+                    label="Selecciona una opción"
                     type='text'
                     name='collecType'
                     value={collecType}
@@ -156,6 +157,23 @@ const CollectionForm = (props) => {
                     ))}
                   </TextField>
                 </Grid>
+                {collecType === 'Venta'&& (
+                  <>
+                    <Grid item xs={12}>
+                        <TextField
+                          id="price"
+                          label="Precio"
+                          type='number'
+                          name='price'
+                          value={price}
+                          onChange={handleInputChange}
+                          variant="filled"
+                          fullWidth
+                          autoFocus
+                        />
+                    </Grid>
+                  </>
+                )}
               </Grid>
 
               <Grid 
@@ -245,7 +263,7 @@ const CollectionForm = (props) => {
                   <TextField
                     id="outlined-select-postUntil"
                     select
-                    label="Select"
+                    label="Selecciona una opción"
                     type='number'
                     name='postUntil'
                     value={postUntil}

@@ -17,6 +17,7 @@ export default function ObjectCard(props) {
     postUntil, 
     collecType,
     imageUrl,
+    price,
     _id } = props;
     
     const linkStyle = {
@@ -37,12 +38,19 @@ export default function ObjectCard(props) {
         <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
-        {/* just for demo */}
-          {description}
-        {/* <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography> */}
+
+        {price && (
+        <>
+          <Typography gutterBottom variant="h6" component="div">
+            Precio: ${price}
+          </Typography>
+        </>          
+        )}
+
+        <Typography variant="body2" color="text.primary">
+        {description}
+        </Typography>
+
       </CardContent>
       <CardActions>
         {/* <Box width='40px' height='40px' border={1} ></Box> for colecciones en general*/}

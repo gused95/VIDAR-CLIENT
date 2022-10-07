@@ -52,10 +52,6 @@ const Navbar2 = (props) => {
                       </Grid>
 
                     </Grid>
-                    {/* <Typography variant="h6" component="div">
-                    {CONSTS.CAPITALIZED_APP.toUpperCase()}
-                    
-                    </Typography> */}
                 </Link>
             </Box>
             <Box sx={{ flexGrow: 1 }}>
@@ -67,13 +63,13 @@ const Navbar2 = (props) => {
                     <>
                         <Grid container spacing={1} alignItems='center'>
                        
-                            <Grid item>
+                            {/* <Grid item>
                                 <Link to={"/location"} style={linkStyle}>
                                     <Button color="secondary" variant='outlined'  >
                                         Ubicación
                                     </Button>    
                                 </Link>
-                            </Grid>
+                            </Grid> */}
                             <Grid item>
                                 <Link to={"/add"} style={linkStyle}>
                                     <Button color="secondary" variant='outlined'  >

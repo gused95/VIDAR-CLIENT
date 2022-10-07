@@ -2,13 +2,18 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import ObjectCard from '../components/ObjectCard/ObjectCard';
 import { Button } from '@mui/material';
 import DetailsCard from '../components/DetailsCard/DetailsCard';
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 
 const API_URL = "http://localhost:5005";
+
+const linkStyle = {
+  textDecoration: 'none',
+  color: 'white'
+}
 
 const DetailsCollection = () => {
 
@@ -53,26 +58,30 @@ const DetailsCollection = () => {
       <h1>Detalles</h1>
       {collection && (
         <>
-          
-          
-          <DetailsCard {...collection}/>
-          
+          <DetailsCard {...collection}/>          
         </>
       )}
-
-      <Link to="/myCollection">
-        <Button>Regresar a colecciones</Button>
+      <Box sx={{ 
+        maxWidth: 500,
+        display: 'flex',
+        justifyContent: 'space-around',
+       }}>
+      <Link to="/myCollection" style={linkStyle}>
+        <Button variant='contained'>Regresar a colecciones</Button>
       </Link>
-      <Link to={`/myCollection/edit/${collection?._id}`}>
-        <Button>Editar</Button>
+      <Link to={`/myCollection/edit/${collection?._id}`} style={linkStyle}>
+        <Button variant='contained' color='secondary'>Editar</Button>
       </Link>
-      <Link to="/myCollection">
+      <Link to="/myCollection" style={linkStyle} >
         <Button 
+          variant='contained'
           onClick={deleteCollection}
+          color='error'
         >
           Borrar
         </Button>
       </Link>
+      </Box>
     </Container>
   )
 }
