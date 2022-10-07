@@ -8,7 +8,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
 
-const API_URL = "http://localhost:5005";
+const API_URL = `${process.env.REACT_APP_SERVER_MY_URL}`;
 
 const linkStyle = {
   textDecoration: 'none',
@@ -21,12 +21,12 @@ const DetailsCollection = () => {
   const { id } = useParams()
   const navigate = useNavigate();
 
-  //http://localhost:5005/collections/details/id
+  
 
   const getCollection = () => {        
     // <== ADD A NEW FUNCTION
     axios
-      .get(`http://localhost:5005/collections/details/${id}`)
+      .get(`${API_URL}/collections/details/${id}`)
       .then((response) => {
         const oneCollection = response.data;
         setCollection(oneCollection);

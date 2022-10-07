@@ -38,7 +38,10 @@ export default function ObjectCard(props) {
         <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
-
+        <Typography gutterBottom variant="h5" component="div">
+          {title}
+        </Typography>
+        {collecType}
         {price && (
         <>
           <Typography gutterBottom variant="h6" component="div">
@@ -56,7 +59,7 @@ export default function ObjectCard(props) {
         {/* <Box width='40px' height='40px' border={1} ></Box> for colecciones en general*/}
         
         <Button size="small" variant='contained'><Link to={`/myCollection/${_id}` } style={linkStyle}>Detalles</Link></Button>
-        <Button size="small" variant='contained' color='secondary'>{collecType}</Button>
+        
       </CardActions>
     </Card>
   );
